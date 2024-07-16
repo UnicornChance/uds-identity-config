@@ -27,17 +27,6 @@
           ".github"
       ]
   },
-  "hostRules": [
-    {
-      "matchHost": "registry1.dso.mil",
-      "hostType": "docker",
-      "description": "Encrypted creds for registry1, scoped to this Github org using: https://github.com/renovatebot/renovate/blob/main/docs/usage/configuration-options.md#encrypted",
-      "encrypted": {
-        "username": "wcBMA8xOaBJvzJNbAQgAm6vTHed3Fwluedbpt+xNHWx0mxZLj97/sB5RJejfxcTUKjtTzI0X4fwZbOI3ZQwW9Q9dAGHNFYJf4z8KU7ErzKR9wBR+N/HUw5oqVItQwqCecEduda9DPz3c1MdgMrwXgA7T5SdU9a0QxLQ8WLcDzpOqM7NvEYPmt0tDwgVNXW3LWP+NIluLeyT/PMKoeNuP7WISlRBe7s22fXF+RQdgy5PQy9KHafEmfOiTi8rbLgVskAa1Chm3GlD2474fUdXrQcRETaza2H2eDkyJl642PYGtcEb2Rl9GbVa0TVVjpwDjk6RsJETS9mmbexXVYorwu1wwW0KVXbq2v1K1te94FdJiATjj0K6M96XLdV22J5XRWzaNdwQExEF/v3molvm9F69JIbQBGK32uzNY+tDKpOR3FR/llOUVDM0Y/1CMqO50SvRqfi/LybfRPKGjlm9uxOqBUxYcGgdVziyU9YYqoYxMl8c",
-        "password": "wcBMA8xOaBJvzJNbAQf/a69wud1zqj4DU6nSmsJKltjvhmXhgUNCgzVPh/IgGpnwvZdL8E2SyDdU3i7t9Dc3ZNS4o5ikxrkqOJn/qgvUk8CU3CBbI6D9tuIStaBdE8EZuBt9etwGpEex/OjnopOllr6lEFVoFPV4hseHKnhKGxtIZxdeOe5RGo9RXESChuC59/jd87mZ8mVZBKOOknNxAc1ifKOuixvfyCHusxDWL/GSpBhn9WZzoI91+JUXzQPxOZFVusc0wA096BN3xtykSBJg0Pn8uS5OE/zVErNrPKMTsjMTjf7AgPwdtOw24zBBBhIJECZVCCjdbus2ClOIVgAPrE4w+7BtG/QpZ/z/etJdAUwCSlB9dD9cLuQdWMLCH4wPst1HQjGmg+0K8H++a+L1Sy1uaCaD51MP04h7HWpFuo4wVMOgiPEMMRyg7l8gTDA0sJ9ZtFtay0eJYndLM6lx9RjIteFavVxzKFkJ"
-      }
-    }
-  ],
   "regexManagers": [
       {
           "fileMatch": [".*(\\.ya?ml|\\.json)$"],
