@@ -71,43 +71,10 @@
           "datasourceTemplate": "npm"
       },
       {
-          "fileMatch": [".*\\.ya?ml$"],
-          "matchStrings": [
-              "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*:\\s*['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
-          ],
-          "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
-          "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}"
-      },
-      {
-          "fileMatch": [".*\\.ya?ml$", ".*\\.sh$", ".*\\.?Dockerfile$"],
-          "matchStrings": [
-              "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*[A-Z]+=['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
-          ],
-          "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
-          "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}"
-      },
-      {
-          "fileMatch": [".*\\.ya?ml$"],
-          "matchStrings": [
-              "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*brew.*@\\s*['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
-          ],
-          "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
-          "extractVersionTemplate": "^v(?<version>.*)$"
-      },
-      {
           "fileMatch": ["\\.*\\.ya?ml$"],
           "matchStrings": [
               "# renovate: image=(?<depName>.*?)\\s*image:\\s.*:(?<currentValue>[^\\s\"]*)"
           ],
-          "datasourceTemplate": "docker"
-      },
-      {
-          "fileMatch": [ "(^|/)zarf\\.ya?ml$" ],
-          "matchStrings": [
-              "- ['\"]?(?<depName>[^\"'\\s]+):(?<currentValue>[^\"'\\s]+)['\"]?( # renovate:( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?)?(\\s|$)"
-          ],
-          "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
-          "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}",
           "datasourceTemplate": "docker"
       },
       {
