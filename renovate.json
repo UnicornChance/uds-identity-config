@@ -44,7 +44,6 @@
           "matchStrings": [
               "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentValue>[^\\/]+)"
           ],
-          "versioningTemplate": "semver-coerced",
           "datasourceTemplate": "github-tags"
       },
       {
@@ -52,7 +51,6 @@
           "matchStrings": [
               "https:\\/\\/github\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/raw\\/(?<currentValue>[^\\/]+)"
           ],
-          "versioningTemplate": "semver-coerced",
           "datasourceTemplate": "github-tags"
       },
       {
@@ -60,7 +58,6 @@
           "matchStrings": [
               "https:\\/\\/github\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/releases\\/download\\/(?<currentValue>[^\\/]+)"
           ],
-          "versioningTemplate": "semver-coerced",
           "datasourceTemplate": "github-tags"
       },
       {
@@ -71,10 +68,39 @@
           "datasourceTemplate": "npm"
       },
       {
+          "fileMatch": [".*\\.ya?ml$"],
+          "matchStrings": [
+              "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*:\\s*['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
+          ],
+          "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}"
+      },
+      {
+          "fileMatch": [".*\\.ya?ml$", ".*\\.sh$", ".*\\.?Dockerfile$"],
+          "matchStrings": [
+              "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?( registryUrl=(?<registryUrl>.*?))?\\s.*[A-Z]+=['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
+          ],
+          "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}"
+      },
+      {
+          "fileMatch": [".*\\.ya?ml$"],
+          "matchStrings": [
+              "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*brew.*@\\s*['\"]?(?<currentValue>[v0-9].*?)['\"]?(\\s|$)"
+          ],
+          "extractVersionTemplate": "^v(?<version>.*)$"
+      },
+      {
           "fileMatch": ["\\.*\\.ya?ml$"],
           "matchStrings": [
               "# renovate: image=(?<depName>.*?)\\s*image:\\s.*:(?<currentValue>[^\\s\"]*)"
           ],
+          "datasourceTemplate": "docker"
+      },
+      {
+          "fileMatch": [ "(^|/)zarf\\.ya?ml$" ],
+          "matchStrings": [
+              "- ['\"]?(?<depName>[^\"'\\s]+):(?<currentValue>[^\"'\\s]+)['\"]?( # renovate:( versioning=(?<versioning>.*?))?( extractVersion=(?<extractVersion>.*?))?)?(\\s|$)"
+          ],
+          "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}",
           "datasourceTemplate": "docker"
       },
       {
@@ -105,8 +131,7 @@
               "(?m)name:(.|\\n)+?(^\\s{4}[\\w\\-:]+|\\n$|^\\s{2}-|^\\s{6}-)",
               "(?m)name:(.|\\n)*?version: [\"']?(?<currentValue>.+?)[\"']?$(.|\\n)*?url: [\"']?(?<depName>.+?\\.git)[\"']?$"
           ],
-          "datasourceTemplate": "git-tags",
-          "versioningTemplate": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(-[\\w\\.]+\\.(?<build>\\d+))?"
+          "datasourceTemplate": "git-tags"
       },
       {
           "fileMatch": [ "(^|/)zarf.yaml$" ],
@@ -116,8 +141,7 @@
               "(?m)name:(.|\\n)+?(^\\s{4}[\\w\\-:]+|\\n$|^\\s{2}-|^\\s{6}-)",
               "(?m)name:(.|\\n)*?url: [\"']?(?<depName>.+?\\.git)[\"']?$(.|\\n)*?version: [\"']?(?<currentValue>.+?)[\"']?$"
           ],
-          "datasourceTemplate": "git-tags",
-          "versioningTemplate": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(-[\\w\\.]+\\.(?<build>\\d+))?"
+          "datasourceTemplate": "git-tags"
       },
       {
           "fileMatch": [ "(^|/)zarf\\.ya?ml$" ],
@@ -147,7 +171,6 @@
               "(?m)name:(.|\\n)+?(^\\s{4}[\\w\\-:]+|\\n$|^\\s{2}-|^\\s{6}-)",
               "(?m)name:(.|\\n)*?kustomizations:(.|\n)*?- [\"']?github.com\\/(?<depName>.+?)\\/\\/.*\\?ref=(?<currentValue>.+?)[\"']?$"
           ],
-          "versioningTemplate": "semver-coerced",
           "datasourceTemplate": "github-tags"
       },
       {
@@ -156,15 +179,13 @@
           "matchStrings": [
               "(?m)repository: [\"']?(?<depName>.+?)[\"']?$(.)*(\n.*){0,2}ref: [\"']?(?<currentValue>.+?)[\"']?$"
           ],
-          "datasourceTemplate": "docker",
-          "versioning": "regex:^v?(?<major>\\d+)(\\.(?<minor>\\d+))?(\\.(?<patch>\\d+))?(-uds\\.(?<build>\\d)(-.*?)?)?(.*?)?$"
+          "datasourceTemplate": "docker"
       },
       {
         "fileMatch": ["^tasks.ya?ml$", "^tasks/.*\\.ya?ml$", "^\\.vscode/settings\\.json$"],
         "matchStrings": [
            "https:\\/\\/raw\\.githubusercontent\\.com\\/(?<depName>[^\\/]+\\/[^\\/]+)\\/(?<currentValue>[^\\/]+)"
         ],
-        "versioningTemplate": "semver-coerced",
         "datasourceTemplate": "github-tags"
       }
   ],
